@@ -36,3 +36,5 @@ with Flow("data-engineer") as flow:
     classes = get_classes(data=data, target_col=target_col) 
     categorical_columns = encode_categorical_columns(data=data, target_col=target_col)
     train_test_dict = split_data(data=categorical_columns, test_data_ratio=test_data_ratio, classes=classes)
+
+flow.run()
