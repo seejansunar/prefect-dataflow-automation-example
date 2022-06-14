@@ -1,4 +1,4 @@
-from prefect import task, Flow
+from prefect import task, Flow, Parameter
 from typing import Any, Dict, List
 import pandas as pd
 
@@ -29,7 +29,7 @@ with Flow("data-engineer") as flow:
     
     # Define parameters
     target_col = 'Species'
-    test_data_ratio = 0.2
+    test_data_ratio = Parameter("test_data_ratio", default=0.2)
     
     # Define tasks
     data = load_data(path="data/iris.csv")
