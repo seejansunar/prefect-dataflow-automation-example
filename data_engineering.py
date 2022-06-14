@@ -24,7 +24,17 @@ def split_data(data: pd.DataFrame, test_data_ratio: float, classes: list) -> Dic
     """Task for splitting the classical Iris data set into training and test
     sets, each split into features and labels.
     """
-    ...
+    print(f"Splitting data into training and test sets with ratio {test_data_ratio}")
+    X, y = data.drop(columns=classes), data[classes]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_data_ratio)
+
+    # When returning many variables, it is a good practice to give them names:
+    return dict(
+        train_x=X_train,
+        train_y=y_train,
+        test_x=X_test,
+        test_y=y_test,
+    )
 
 with Flow("data-engineer") as flow:
     
