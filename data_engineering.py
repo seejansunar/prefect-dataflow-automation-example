@@ -39,4 +39,6 @@ with Flow("data-engineer") as flow:
 
 flow.run(parameters={'test_data_ratio': 0.3})
 
-flow.visualize()
+# flow.visualize()
+
+flow.register(project_name="Iris Project")
