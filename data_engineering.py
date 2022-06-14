@@ -38,3 +38,5 @@ with Flow("data-engineer") as flow:
     train_test_dict = split_data(data=categorical_columns, test_data_ratio=test_data_ratio, classes=classes)
 
 flow.run()
+
+flow.visualize()
