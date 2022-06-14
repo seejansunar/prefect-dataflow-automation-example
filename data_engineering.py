@@ -32,7 +32,7 @@ with Flow("data-engineer") as flow:
     test_data_ratio = 0.2
     
     # Define tasks
-    data = load_data(path="data/raw/iris.csv")
+    data = load_data(path="data/iris.csv")
     classes = get_classes(data=data, target_col=target_col) 
     categorical_columns = encode_categorical_columns(data=data, target_col=target_col)
     train_test_dict = split_data(data=categorical_columns, test_data_ratio=test_data_ratio, classes=classes)
