@@ -1,6 +1,7 @@
 from prefect import task, Flow, Parameter
 from typing import Any, Dict, List
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 @task
 def load_data(path: str) -> pd.DataFrame:
