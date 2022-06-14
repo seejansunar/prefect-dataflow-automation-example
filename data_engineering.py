@@ -2,6 +2,7 @@ from prefect import task, Flow, Parameter
 from typing import Any, Dict, List
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from prefect.engine.results import LocalResult
 
 @task
 def load_data(path: str) -> pd.DataFrame:
@@ -19,7 +20,7 @@ def encode_categorical_columns(data: pd.DataFrame, target_col: str) -> pd.DataFr
     """Task for encoding the categorical columns in the Iris data set."""
     return pd.get_dummies(data, columns=[target_col], prefix="", prefix_sep="")
 
-@task
+@task(result = LocalResult(dir='data/processed'))
 def split_data(data: pd.DataFrame, test_data_ratio: float, classes: list) -> Dict[str, Any]:
     """Task for splitting the classical Iris data set into training and test
     sets, each split into features and labels.
