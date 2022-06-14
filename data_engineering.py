@@ -20,7 +20,8 @@ def encode_categorical_columns(data: pd.DataFrame, target_col: str) -> pd.DataFr
     """Task for encoding the categorical columns in the Iris data set."""
     return pd.get_dummies(data, columns=[target_col], prefix="", prefix_sep="")
 
-@task(result = LocalResult(dir='data/processed'))
+@task(target="{date:%a_%b_%d_%Y_%H:%M:%S}/{task_name}_output",
+      result = LocalResult(dir='data/processed'))
 def split_data(data: pd.DataFrame, test_data_ratio: float, classes: list) -> Dict[str, Any]:
     """Task for splitting the classical Iris data set into training and test
     sets, each split into features and labels.
