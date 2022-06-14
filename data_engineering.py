@@ -10,7 +10,7 @@ def load_data(path: str) -> pd.DataFrame:
 @task
 def get_classes(data: pd.DataFrame, target_col: str) -> List[str]:
     """Task for getting the classes from the Iris data set."""
-    ...
+    return sorted(data[target_col].unique())
 
 
 @task
