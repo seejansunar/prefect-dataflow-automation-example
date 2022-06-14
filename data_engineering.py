@@ -1,4 +1,4 @@
-from prefect import task
+from prefect import task, Flow
 from typing import Any, Dict, List
 import pandas as pd
 
@@ -24,3 +24,15 @@ def split_data(data: pd.DataFrame, test_data_ratio: float, classes: list) -> Dic
     sets, each split into features and labels.
     """
     ...
+
+with Flow("data-engineer") as flow:
+    
+    # Define parameters
+    target_col = 'Species'
+    test_data_ratio = 0.2
+    
+    # Define tasks
+    data = load_data(path="data/raw/iris.csv")
+    classes = get_classes(data=data, target_col=target_col) 
+    categorical_columns = encode_categorical_columns(data=data, target_col=target_col)
+    train_test_dict = split_data(data=categorical_columns, test_data_ratio=test_data_ratio, classes=classes)
