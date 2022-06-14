@@ -9,7 +9,9 @@ def load_data(path: str) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
-@task
+@task(
+    target="{date:%a_%b_%d_%Y_%H-%M-%S}/{task_name}_output",
+    result=LocalResult(dir="data/processed"))
 def get_classes(data: pd.DataFrame, target_col: str) -> List[str]:
     """Task for getting the classes from the Iris data set."""
     return sorted(data[target_col].unique())
