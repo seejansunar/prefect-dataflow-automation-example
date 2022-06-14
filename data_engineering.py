@@ -16,7 +16,7 @@ def get_classes(data: pd.DataFrame, target_col: str) -> List[str]:
 @task
 def encode_categorical_columns(data: pd.DataFrame, target_col: str) -> pd.DataFrame:
     """Task for encoding the categorical columns in the Iris data set."""
-    ...
+    return pd.get_dummies(data, columns=[target_col], prefix="", prefix_sep="")
 
 @task
 def split_data(data: pd.DataFrame, test_data_ratio: float, classes: list) -> Dict[str, Any]:
