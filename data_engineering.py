@@ -37,6 +37,6 @@ with Flow("data-engineer") as flow:
     categorical_columns = encode_categorical_columns(data=data, target_col=target_col)
     train_test_dict = split_data(data=categorical_columns, test_data_ratio=test_data_ratio, classes=classes)
 
-flow.run()
+flow.run(parameters={'test_data_ratio': 0.3})
 
 flow.visualize()
