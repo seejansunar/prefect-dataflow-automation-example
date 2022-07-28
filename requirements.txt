@@ -9,7 +9,7 @@ fsspec==2022.5.0
 graphviz==0.20
 HeapDict==1.0.1
 idna==3.3
-importlib-resources==5.8.0
+importlib-resources==5.9.0
 Jinja2==3.1.2
 joblib==1.1.0
 locket==1.0.0
